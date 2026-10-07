@@ -2,6 +2,8 @@
 
 Published: 2026-10-06.
 
+Setup trên máy mới: [SETUP.md](../SETUP.md). Record 24 tests dưới đây là lịch sử V8, không phải kết quả chạy hiện tại. UI V10 và record riêng: [SPEED-MOTION-V10.md](SPEED-MOTION-V10.md). ZIP là output generated, không có sẵn trong clone.
+
 - Public URL: **https://vanta-form-01.pages.dev**
 - Cloudflare Pages project: `vanta-form-01`
 - Deployment method: dashboard Direct Upload, production deployment.

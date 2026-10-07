@@ -2,6 +2,9 @@
 
 Website concept sneaker đang online: https://vanta-form-01.pages.dev
 
+Máy mới: [SETUP.md](SETUP.md). Hướng dẫn AI: [AGENTS.md](AGENTS.md).
+Kiểm tra bàn giao và lỗi còn mở: [VERIFICATION.md](VERIFICATION.md).
+
 ## Chạy source trên máy khác
 
 Yêu cầu Node.js 22 và npm. Giải nén gói bàn giao, mở terminal trong thư mục `vanta-landing`:
@@ -42,8 +45,8 @@ Nếu cổng 3017 đang được sử dụng, dừng preview cũ trước khi ch
 | `assets/ASSETS.md` | Nguồn asset, giấy phép, lịch sử phiên bản |
 | `docs/` | Tài liệu triển khai và kiểm thử |
 | `tests/` | Playwright, accessibility và kiểm thử tương tác |
-| `dist/vanta-form-01.zip` | Bản build V10 đã upload Cloudflare, có thể triển khai lại ngay |
-| `HANDOVER-MANIFEST.json` | Danh sách file và SHA-256 trong gói bàn giao |
+| `dist/vanta-form-01.zip` | Output generated sau `npm run build:static`, không đi kèm clone |
+| `HANDOVER-MANIFEST.json` | Manifest của gói bàn giao lịch sử, không được track trong repo |
 
 Gói không chứa `node_modules`, cache `.next` / `.next-static` hay kết quả test tạm. Cài lại dependency bằng `npm ci`. Các asset cũ và backup trong `assets/` được giữ để tham khảo.
 
@@ -57,7 +60,7 @@ npm run build:static
 
 Upload `dist/vanta-form-01.zip` vào project Cloudflare Pages **vanta-form-01**, tạo Production deployment mới. Hướng dẫn: `docs/DEPLOYMENT.md`.
 
-Build mới cần Internet để cài dependency và lấy font Google qua Next.js. File ZIP build đã kèm trong gói có sẵn font và asset để triển khai trực tiếp.
+Build mới cần Internet để cài dependency và lấy font Google qua Next.js. ZIP được tạo sau build chứa font và asset để triển khai; clone source chưa có ZIP.
 
 ## Kiểm tra và lưu ý chuyển máy
 
@@ -68,7 +71,7 @@ npm run build
 npm test
 ```
 
-`playwright.config.ts` hiện trỏ Chrome của máy gốc tại `/home/sss/.local/bin/google-chrome`. Trên máy mới, sửa `executablePath` sang Chrome của máy đó, hoặc bỏ thuộc tính này và cài Chromium bằng `npx playwright install chromium`.
+Playwright dùng Chromium quản lý bằng `npx playwright install chromium`. Khi cần browser riêng, đặt `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` thành đường dẫn executable trên máy đó; không cần sửa source.
 
 Các script Blender/chuẩn bị ảnh lịch sử có đường dẫn tuyệt đối của máy gốc; chỉnh lại đường dẫn trước khi render lại. Website dùng asset đã xuất sẵn nên không phụ thuộc các đường dẫn này. Xem `assets/ASSETS.md` trước khi chỉnh scene.
 
